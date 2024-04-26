@@ -10,7 +10,8 @@ class FoodPageBody extends StatefulWidget {
 class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
+        height: 320,
         child: PageView.builder(
             itemCount: 5,
             itemBuilder: (context, position) {
@@ -18,7 +19,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             }));
   }
 
+//circling
   Widget _buildPageItem(int index) {
-    return Container();
+    return Container(
+      height: 220,
+      margin: const EdgeInsets.only(left: 5, right: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: const Color(0xFF69c5df),
+      ),
+    );
   }
 }
