@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:food_delivery/data/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  const RecommendedFoodDetail({super.key, required this.pageId});
+  final int pageId;
 
   @override
   Widget build(BuildContext context) {
+    var recommended =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -27,7 +41,8 @@ class RecommendedFoodDetail extends StatelessWidget {
               preferredSize: Size.fromHeight(20),
               child: Container(
                 child: Center(
-                  child: BigText(text: "Udon", size: Dimensions.font26),
+                  child:
+                      BigText(text: recommended.name!, size: Dimensions.font26),
                 ),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
@@ -44,8 +59,12 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/image/food4.png",
-                  width: double.maxFinite, fit: BoxFit.cover),
+              background: Image.network(
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      recommended.img!,
+                  width: double.maxFinite,
+                  fit: BoxFit.cover),
             ),
           ),
           SliverToBoxAdapter(
@@ -53,8 +72,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 Container(
                   child: ExpandableTextWidget(
-                    text:
-                        "日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。日本そば(蕎麦)は、ソバの実を使った蕎麦粉を加工した麺類です。日本全国で食べられていますが、全国製麺協同組合連合会では、そば粉30%以上、小麦粉70%以下の割合で混合した原料を用いたものを日本そばと呼んでいます。　日本を代表する料理として知られるそばは長い歴史を持ち、文献によれば日本への伝来は奈良時代以前といわれています。古くはそばがきやそば焼きなどの食べ方が主流で、江戸時代の頃からそば切りという現在のスタイルが確立されたようです。好みに合わせて色々な食べ方を楽しめるのが日本そばの魅力です。代表的なものが、一口ずつつゆにつけて食べる「もりそば」「ざるそば」と、丼に温かいつゆをたっぷりかける「かけそば」です。また、10月の新そばの季節にはとくに香り高いそばが味わえます。",
+                    text: recommended.description!,
                   ),
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
@@ -82,7 +100,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       backgroundColor: AppColors.mainColor,
                       icon: Icons.remove),
                   BigText(
-                    text: "¥12.88 " + " x " + " 0",
+                    text: "¥ ${recommended.price} " + " x " + " 0",
                     color: AppColors.mainBlackColor,
                     size: Dimensions.font26,
                   ),
@@ -132,8 +150,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                       bottom: Dimensions.height20,
                       left: Dimensions.width20,
                       right: Dimensions.width20),
-                  child:
-                      BigText(text: "¥10 | Add to cart", color: Colors.white),
+                  child: BigText(
+                      text: "¥ ${recommended.price!} | Add to cart",
+                      color: Colors.white),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                         Dimensions.radius20,
