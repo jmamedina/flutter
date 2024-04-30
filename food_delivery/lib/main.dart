@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
     Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: const MainFoodPage(),
+      title: 'Foodo Express',
       initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
     );

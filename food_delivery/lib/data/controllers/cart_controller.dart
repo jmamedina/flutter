@@ -27,6 +27,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
       if (totalQuantity <= 0) {
@@ -45,6 +46,7 @@ class CartController extends GetxController {
               quantity: quantity,
               isExist: true,
               time: DateTime.now().toString(),
+              product: product,
             );
           },
         );
@@ -53,6 +55,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    update();
   }
 
 //check if exists in cart
@@ -93,5 +96,15 @@ class CartController extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
+  }
+
+//get total amount of cart
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+
+    return total;
   }
 }
