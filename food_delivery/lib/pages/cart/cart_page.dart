@@ -92,8 +92,16 @@ class CartPage extends StatelessWidget {
                                       Get.find<RecommendedProductController>()
                                           .recommendedProductList
                                           .indexOf(_cartList[index].product!);
-                                  Get.toNamed(RouteHelper.getRecommendedFood(
-                                      recommendedIndex, "cartPage"));
+
+                                  if (recommendedIndex < 0) {
+                                    Get.snackbar("History:",
+                                        "Product review is not available for history products",
+                                        backgroundColor: AppColors.mainColor,
+                                        colorText: Colors.white);
+                                  } else {
+                                    Get.toNamed(RouteHelper.getRecommendedFood(
+                                        recommendedIndex, "cartPage"));
+                                  }
                                 }
                               },
                               child: Container(
@@ -135,9 +143,10 @@ class CartPage extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         BigText(
-                                          text: cartController
-                                              .getItems[index].price
-                                              .toString(),
+                                          text: "¥" +
+                                              cartController
+                                                  .getItems[index].price
+                                                  .toString(),
                                           color: Colors.redAccent,
                                         ),
                                         Container(
@@ -235,7 +244,9 @@ class CartPage extends StatelessWidget {
                     children: [
                       SizedBox(width: Dimensions.width10 / 2),
                       BigText(
-                          text: "¥" + cartController.totalAmount.toString()),
+                          text: "合計：" +
+                              "¥" +
+                              cartController.totalAmount.toString()),
                       SizedBox(width: Dimensions.width10 / 2),
                     ],
                   ),
@@ -250,6 +261,7 @@ class CartPage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       // popularProduct.addItem(product);
+                      cartController.addToHistory();
                     },
                     child: BigText(text: "Checkout", color: Colors.white),
                   ),
