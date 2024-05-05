@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Foodo Express',
-              home: SignInPage(),
-              // initialRoute: RouteHelper.getSplashPage(),
-              // getPages: RouteHelper.routes,
+              // home: SignInPage(),
+              initialRoute: RouteHelper.getSplashPage(),
+              getPages: RouteHelper.routes,
             );
           },
         );

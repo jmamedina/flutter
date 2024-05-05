@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:food_delivery/base/show_custom_snackbar.dart';
 import 'package:food_delivery/data/controllers/auth_controller.dart';
 import 'package:food_delivery/models/signup_body_model.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
@@ -48,6 +49,7 @@ class SignUpPage extends StatelessWidget {
             name: name, password: password, phone: phone, email: email);
         authController.registration(signUpBody).then((status) {
           if (status.isSucces) {
+            Get.offNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
@@ -90,7 +92,8 @@ class SignUpPage extends StatelessWidget {
                       AppTextField(
                           textController: passwordController,
                           hintText: "Password",
-                          icon: Icons.password_sharp),
+                          icon: Icons.password_sharp,
+                          isObscure: true),
                       SizedBox(
                         height: Dimensions.height20,
                       ),

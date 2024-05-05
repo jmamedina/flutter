@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_delivery/base/no_data_page.dart';
+import 'package:food_delivery/data/controllers/auth_controller.dart';
 import 'package:food_delivery/data/controllers/cart_controller.dart';
 import 'package:food_delivery/data/controllers/popular_product_controller.dart';
 import 'package:food_delivery/data/controllers/recommended_product_controller.dart';
@@ -295,8 +296,11 @@ class CartPage extends StatelessWidget {
                             right: Dimensions.width20),
                         child: GestureDetector(
                           onTap: () {
-                            // popularProduct.addItem(product);
-                            cartController.addToHistory();
+                            if (Get.find<AuthController>().userLoggedIn()) {
+                              cartController.addToHistory();
+                            } else {
+                              Get.toNamed(RouteHelper.getSignInPage());
+                            }
                           },
                           child: BigText(text: "Checkout", color: Colors.white),
                         ),
