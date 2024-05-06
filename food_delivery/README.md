@@ -1,23 +1,28 @@
-Food Delivery Flutter App
+# Food Delivery Flutter App
 
-This Flutter app allows users to order food, view order history, and perform login and logout functions. It communicates with the backend food delivery system to fetch food data and manage orders.
+This Flutter app allows users to: 
+- order food, 
+- view order history, 
+- perform login and logout functions. 
 
-特徴
+It communicates with the backend food delivery system to fetch food data and manage orders.
 
-食品アイテムを注文する
-注文履歴を表示する
-ログインおよびログアウト機能
-食品データを取得するためのバックエンドフードデリバリーシステムとの統合
-使用方法
+## Features
+
+- 食品アイテムを注文する
+- 注文履歴を表示する
+- ログインおよびログアウト機能
+- **食品データを取得するためのバックエンドフードデリバリーシステムとの統合**
+
+## 使用方法
 
 デバイスにFlutterアプリをインストールするだけで、食べ物を注文したり、注文履歴を表示したり、アカウントを簡単に管理したりできます。
 
-Integration with Backend
+## Integration with Backend
 
 The Flutter app communicates with the backend food delivery system through API calls. It fetches food data and manages orders using the provided APIs.
-In the future, the app will also integrate with the backend for order processing, order history, and user location tracking.
+**In the future, the app will also integrate with the backend for order processing, order history, and user location tracking.**
 
-Contributing
+## Contributing
 
 Contributions are welcome! Feel free to submit pull requests or open issues for any improvements or bug fixes.
-
