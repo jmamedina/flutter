@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 // ResponseModel class
 // レスポンスモデルクラス
 class ResponseModel {
