@@ -1,3 +1,5 @@
+// Cart Model
+// カートモデル
 import 'package:food_delivery/models/products_model.dart';
 
 class CartModel {
@@ -21,6 +23,8 @@ class CartModel {
     this.product,
   });
 
+  // Deserialize JSON to object
+  // JSONをオブジェクトに逆シリアル化
   CartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -32,6 +36,8 @@ class CartModel {
     product = ProductModel.fromJson(json['product']);
   }
 
+  // Serialize object to JSON
+  // オブジェクトをJSONにシリアル化
   Map<String, dynamic> toJson() {
     return {
       "id": this.id,

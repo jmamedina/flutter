@@ -1,3 +1,5 @@
+// Cart Controller
+// カートコントローラー
 import 'package:flutter/material.dart';
 import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/models/cart_model.dart';
@@ -5,7 +7,6 @@ import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 
-//カートコントローラー
 class CartController extends GetxController {
   CartController({required this.cartRepo});
   final CartRepo cartRepo;
@@ -14,7 +15,8 @@ class CartController extends GetxController {
   /* only for storage and sharedPreferences */
   List<CartModel> storageItems = [];
 
-//add item to cart
+  // Add item to cart
+  // カートに商品を追加
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
@@ -61,7 +63,8 @@ class CartController extends GetxController {
     update();
   }
 
-//check if exists in cart
+  // Check if exists in cart
+  // カートに存在するかを確認
   bool existInCart(ProductModel product) {
     if (_items.containsKey(product.id)) {
       return true;
@@ -70,7 +73,8 @@ class CartController extends GetxController {
     }
   }
 
-//get quantity of product in cart
+  // Get quantity of product in cart
+  // カート内の商品の数量を取得
   int getQuantity(ProductModel product) {
     var quantity = 0;
     if (_items.containsKey(product.id)) {
@@ -85,7 +89,8 @@ class CartController extends GetxController {
     return quantity;
   }
 
-//get total items
+  // Get total items
+  // 合計商品数を取得
   int get totalItems {
     var totalQuantity = 0;
     _items.forEach((key, value) {
@@ -94,14 +99,16 @@ class CartController extends GetxController {
     return totalQuantity;
   }
 
-//Return the list of cart
+  // Return the list of cart
+  // カートのリストを返す
   List<CartModel> get getItems {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
   }
 
-//get total amount of cart
+  // Get total amount of cart
+  // カートの合計金額を取得
   int get totalAmount {
     var total = 0;
     _items.forEach((key, value) {
@@ -111,13 +118,15 @@ class CartController extends GetxController {
     return total;
   }
 
-//get cart items
+  // Get cart items
+  // カートのアイテムを取得
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
     return storageItems;
   }
 
-//set cart items
+  // Set cart items
+  // カートのアイテムを設定
   set setCart(List<CartModel> items) {
     storageItems = items;
 
@@ -126,35 +135,42 @@ class CartController extends GetxController {
     }
   }
 
-//add to history
+  // Add to history
+  // 履歴に追加
   void addToHistory() {
     cartRepo.addToCartHistoryList();
     clear();
   }
 
-//empty items
+  // Empty items
+  // アイテムを空にする
   void clear() {
     _items = {};
     update();
   }
 
-//list of cart
+  // List of cart
+  // カートのリスト
   List<CartModel> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
   }
 
-//set items for the cart history
+  // Set items for the cart history
+  // カート履歴のアイテムを設定
   set setItems(Map<int, CartModel> setItems) {
     _items = {};
     _items = setItems;
   }
 
-  //add to cart List from history
+  // Add to cart List from history
+  // 履歴からカートリストに追加
   void addToCartList() {
     cartRepo.addToCartList(getItems);
     update();
   }
 
+  // Clear cart history
+  // カート履歴をクリア
   void clearCartHistory() {
     cartRepo.clearCartHistory();
     update();

@@ -1,3 +1,5 @@
+// Initialize Function
+// 初期化関数
 import 'dart:ffi';
 import 'package:food_delivery/data/api/api_client.dart';
 import 'package:food_delivery/data/controllers/auth_controller.dart';
@@ -18,69 +20,86 @@ Future<Void?> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
 
   Get.lazyPut(() => sharedPreferences);
-  //api client
+
+  // Api client
+  // APIクライアント
   Get.lazyPut(
     () => ApiClient(
         appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find()),
   );
 
-//repos
-  //popular product
+  // Repositories
+  // リポジトリ
+  // Popular product repository
+  // 人気商品リポジトリ
   Get.lazyPut(
     () => PopularProductRepo(
       apiClient: Get.find(),
     ),
   );
-  //recommended product
+
+  // Recommended product repository
+  // おすすめ商品リポジトリ
   Get.lazyPut(
     () => RecommendedProductRepo(
       apiClient: Get.find(),
     ),
   );
-  //cart repo
+
+  // Cart repository
+  // カートリポジトリ
   Get.lazyPut(
     () => CartRepo(sharedPreferences: Get.find()),
   );
-  //auth repo
+
+  // Auth repository
+  // 認証リポジトリ
   Get.lazyPut(
     () => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()),
   );
-  //user repo
+
+  // User repository
+  // ユーザーリポジトリ
   Get.lazyPut(
     () => UserRepo(apiClient: Get.find()),
   );
 
-//controllers
-
-  //popular product
+  // Controllers
+  // コントローラー
+  // Popular product controller
+  // 人気商品コントローラー
   Get.lazyPut(
     () => PopularProductController(
       popularProductRepo: Get.find(),
     ),
   );
 
-  //recommended product
+  // Recommended product controller
+  // おすすめ商品コントローラー
   Get.lazyPut(
     () => RecommendedProductController(
       recommendedProductRepo: Get.find(),
     ),
   );
 
-  //cart
+  // Cart controller
+  // カートコントローラー
   Get.lazyPut(
     () => CartController(
       cartRepo: Get.find(),
     ),
   );
 
-  //popular product
+  // Auth controller
+  // 認証コントローラー
   Get.lazyPut(
     () => AuthController(
       authRepo: Get.find(),
     ),
   );
 
-  //userRepo
+  // User controller
+  // ユーザーコントローラー
   Get.lazyPut(
     () => UserController(
       userRepo: Get.find(),

@@ -1,3 +1,5 @@
+// Product class
+// 商品クラス
 class Product {
   int? _totalSize;
   int? _typeId;
@@ -5,18 +7,22 @@ class Product {
   late List<ProductModel> _products;
   List<ProductModel> get products => _products;
 
-  Product(
-      {required totalSize,
-      required,
-      required typeId,
-      required offset,
-      required products}) {
+  // Constructor
+  // コンストラクター
+  Product({
+    required int totalSize,
+    required int typeId,
+    required int offset,
+    required List<ProductModel> products,
+  }) {
     this._totalSize = totalSize;
     this._typeId = typeId;
     this._offset = offset;
     this._products = products;
   }
 
+  // Deserialize JSON to object
+  // JSONをオブジェクトに逆シリアル化
   Product.fromJson(Map<String, dynamic> json) {
     _totalSize = json['total_size'];
     _typeId = json['type_id'];
@@ -30,6 +36,8 @@ class Product {
   }
 }
 
+// ProductModel class
+// 商品モデルクラス
 class ProductModel {
   int? id;
   String? name;
@@ -42,18 +50,23 @@ class ProductModel {
   String? updatedAt;
   int? typeId;
 
-  ProductModel(
-      {this.id,
-      this.name,
-      this.description,
-      this.price,
-      this.stars,
-      this.img,
-      this.location,
-      this.createdAt,
-      this.updatedAt,
-      this.typeId});
+  // Constructor
+  // コンストラクター
+  ProductModel({
+    this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.stars,
+    this.img,
+    this.location,
+    this.createdAt,
+    this.updatedAt,
+    this.typeId,
+  });
 
+  // Deserialize JSON to object
+  // JSONをオブジェクトに逆シリアル化
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -67,6 +80,8 @@ class ProductModel {
     typeId = json['type_id'];
   }
 
+  // Serialize object to JSON
+  // オブジェクトをJSONにシリアル化
   Map<String, dynamic> toJson() {
     return {
       "id": this.id,

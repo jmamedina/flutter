@@ -1,3 +1,5 @@
+// Recommended Product Controller
+// おすすめ商品コントローラー
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/data/repository/recommended_product_repo.dart';
 import 'package:food_delivery/models/products_model.dart';
@@ -9,10 +11,13 @@ class RecommendedProductController extends GetxController {
   List<dynamic> _recommendedProductList = [];
   List<dynamic> get recommendedProductList => _recommendedProductList;
 
-//check if it is already loaded
+  // Check if it is already loaded
+  // すでに読み込まれているかを確認
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
+  // Get recommended product list
+  // おすすめ商品リストを取得
   Future<void> getRecommendedProductList() async {
     Response response =
         await recommendedProductRepo.getRecommendedProductList();

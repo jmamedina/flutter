@@ -1,3 +1,5 @@
+// UserModel class
+// ユーザーモデルクラス
 class UserModel {
   int id;
   String name;
@@ -5,6 +7,8 @@ class UserModel {
   String phone;
   int orderCount;
 
+  // Constructor
+  // コンストラクター
   UserModel({
     required this.id,
     required this.name,
@@ -13,6 +17,8 @@ class UserModel {
     required this.orderCount,
   });
 
+  // Deserialize JSON to object
+  // JSONをオブジェクトに逆シリアル化
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'],

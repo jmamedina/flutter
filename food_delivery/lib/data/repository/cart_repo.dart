@@ -1,47 +1,37 @@
+// Cart Repository
+// カートリポジトリ
 import 'dart:convert';
 
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-//save data into shared preferences
 class CartRepo {
   CartRepo({required this.sharedPreferences});
   final SharedPreferences sharedPreferences;
   List<String> cart = [];
   List<String> cartHistory = [];
 
+  // Add data to cart list
+  // カートリストにデータを追加
   void addToCartList(List<CartModel> cartList) {
-    // sharedPreferences.remove(AppConstants.CART_LIST);
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
-
     var time = DateTime.now().toString();
-    // cart list
     cart = [];
-    /*
-      convert objects to sctring because shared preference only accepts string 
-    */
     cartList.forEach((element) {
       element.time = time;
-
       return cart.add(
         jsonEncode(element),
       );
     });
-
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
-    // getCartList();
   }
 
-// get cart list
+  // Get cart list
+  // カートリストを取得
   List<CartModel> getCartList() {
     List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print(
-        "inside getCartList" + carts.toString(),
-      );
     }
     List<CartModel> cartList = [];
     carts.forEach(
@@ -51,17 +41,16 @@ class CartRepo {
         ),
       ),
     );
-
     return cartList;
   }
 
+  // Get cart history list
+  // カート履歴リストを取得
   List<CartModel> getCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = [];
       cartHistory =
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
-
     List<CartModel> cartListHistory = [];
     cartHistory.forEach(
       (element) => cartListHistory.add(
@@ -70,32 +59,33 @@ class CartRepo {
         ),
       ),
     );
-
     return cartListHistory;
   }
 
-  // add to cart history list
+  // Add to cart history list
+  // カート履歴リストに追加
   void addToCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory =
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
-
     for (int i = 0; i < cart.length; i++) {
       cartHistory.add(cart[i]);
     }
-
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
   }
 
-//remove cart Items if checkout
+  // Remove cart items if checkout
+  // チェックアウト時にカートアイテムを削除
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
   }
 
+  // Clear cart history
+  // カート履歴をクリア
   void clearCartHistory() {
     removeCart();
     cartHistory = [];

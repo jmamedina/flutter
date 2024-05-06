@@ -1,3 +1,5 @@
+// User Controller
+// ユーザーコントローラー
 import 'package:food_delivery/data/repository/user_repo.dart';
 import 'package:food_delivery/models/response_model.dart';
 import 'package:food_delivery/models/user_model.dart';
@@ -14,7 +16,8 @@ class UserController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
   UserModel get userMode => _userModel;
 
-//user
+  // Get user information
+  // ユーザー情報を取得
   Future<ResponseModel> getUserInfo() async {
     Response response = await userRepo.getUserInfo();
     late ResponseModel responseModel;
